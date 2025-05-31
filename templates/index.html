@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Job Market Analytics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <style>
+        /* Custom styles for index.html */
+        .hero-section {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 80px 0; /* Increased padding top and bottom */
+        }
+
+        .hero-content {
+            color: white;
+            z-index: 1;
+            padding-right: 2rem; /* Add some padding to the right */
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s;
+        }
+
+        .upload-form-container {
+            margin-top: 2rem;
+            animation: fadeInUp 1s ease-out 0.4s;
+        }
+
+        .upload-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+
+        .upload-button {
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            background: #2ecc71; /* Green color for upload */
+            color: white;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .upload-button:hover {
+            background: #27ae60; /* Darker green on hover */
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .file-input-group {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1.5rem; /* Increased bottom margin */
+        }
+
+        .file-input-label {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Adjusted for horizontal gap */
+        .feature-cards-row.row > [class*="col-"] {
+            padding-right: 10px;
+            padding-left: 10px;
+            padding-up: 10px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.4s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%; /* Make card take full height of parent column */
+            color: white; /* Ensure text is readable */
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2ecc71; /* Green icons */
+        }
+
+        .feature-card h3 {
+            color: white; /* Ensure heading is readable */
+            font-size: 1.4rem;
+        }
+
+        .feature-card p {
+             color: rgba(255, 255, 255, 0.8);
+             font-size: 1rem;
+        }
+
+        .alert {
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .stats-section {
+            background: white;
+            padding: 4rem 0;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            background: #f8f9fa;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+
+        .stat-label {
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="white" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+        }
+
+        /* Responsive adjustments for hero section layout */
+        @media (min-width: 992px) {
+            .hero-content {
+                padding-right: 4rem; /* More padding on larger screens */
+            }
+             .upload-form-container .col-md-8 {
+                 max-width: 100%; /* Allow form to take full width */
+             }
+        }
+
+
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-chart-network me-2"></i>Enterprise Job Market Analytics
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#stats">Statistics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="hero-title">Transform Your Hiring Strategy with Data-Driven Insights</h1>
+                    
+
+                     <!-- Flash Messages -->
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category if category != 'error' else 'danger' }}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+
+                    <!-- Upload Form -->
+                    <div class="upload-form-container">
+                       <div class="upload-form">
+                            <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+                                <div class="file-input-group">
+                                    <label for="file" class="form-label file-input-label">Upload Job Market Data (CSV)</label>
+                                    <input type="file" class="form-control" id="file" name="file" accept=".csv" required>
+                                </div>
+                                <button type="submit" class="upload-button">
+                                    <i class="fas fa-upload me-2"></i>Upload and Analyze
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="row feature-cards-row">
+                        <div class="col-md-6 feature-col">
+                            <div class="feature-card">
+                                <i class="fas fa-chart-bar feature-icon"></i>
+                                <h3>Market Trends</h3>
+                                <p>Real-time analysis of job market trends and patterns</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 feature-col">
+                            <div class="feature-card">
+                                <i class="fas fa-brain feature-icon"></i>
+                                <h3>AI Predictions</h3>
+                                <p>Advanced forecasting using machine learning</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 feature-col">
+                            <div class="feature-card">
+                                <i class="fas fa-map-marker-alt feature-icon"></i>
+                                <h3>Location Insights</h3>
+                                <p>Geographic distribution of opportunities</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 feature-col">
+                            <div class="feature-card">
+                                <i class="fas fa-code feature-icon"></i>
+                                <h3>Skill Analysis</h3>
+                                <p>In-demand skills and technology trends</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wave"></div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section" id="stats">
+        <div class="container">
+            <h2 class="text-center mb-5">Market Overview</h2>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number">{{ total_jobs }}</div>
+                        <div class="stat-label">Total Job Postings</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number">₹{{ avg_salary }}L</div>
+                        <div class="stat-label">Average CTC</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number">{{ remote_percentage }}%</div>
+                        <div class="stat-label">Remote Jobs</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number">{{ ai_adoption }}%</div>
+                        <div class="stat-label">AI Adoption</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5 bg-light" id="features">
+        <div class="container">
+            <h2 class="text-center mb-5">Key Features</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
+                            <h4>Trend Analysis</h4>
+                            <p>Comprehensive analysis of job market trends and patterns</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="fas fa-robot fa-3x text-primary mb-3"></i>
+                            <h4>AI-Powered Insights</h4>
+                            <p>Predictive analytics using advanced machine learning</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="fas fa-map-marked-alt fa-3x text-primary mb-3"></i>
+                            <h4>Geographic Analysis</h4>
+                            <p>Detailed location-based job market insights</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Enterprise Job Market Analytics</h5>
+                    <p>Making data-driven decisions in the job market</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>&copy; 2025 Enterprise Job Market Analytics. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

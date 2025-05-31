@@ -1,0 +1,423 @@
+/* Enterprise Job Market Analysis Styles */
+
+/* General Styles */
+body {
+    background-color: #f4f7f6; /* Light grey background */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    /* Removed padding-top to avoid white strip */
+}
+
+/* Navbar Styles */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 0.8rem 0;
+    background-color: #2c3e50 !important; /* Dark background */
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: #ecf0f1 !important; /* Light text color */
+}
+
+.navbar-text {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    color: #bdc3c7 !important;
+}
+
+/* Card Styles */
+.card {
+    border: none;
+    border-radius: 12px; /* More rounded corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Softer shadow */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    background: #ffffff; /* White background */
+}
+
+.card:hover {
+    transform: translateY(-8px); /* More pronounced hover effect */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15); /* Stronger shadow on hover */
+}
+
+.card-header {
+    background-color: #ffffff !important; /* White header background */
+    border-bottom: 1px solid #e0e0e0; /* Lighter border */
+    padding: 1.5rem; /* Increased padding */
+    font-weight: 600;
+    color: #333;
+    font-size: 1.2rem;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.card-header h5 {
+    margin: 0;
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 1.2rem;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Summary Cards Specific Styles */
+.summary-card .card-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.summary-card .icon-container {
+    background-color: rgba(52, 152, 219, 0.1); /* Use a consistent light background */
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.summary-card .text-section h6 {
+    color: #7f8c8d; /* Muted text */
+    font-weight: 500;
+}
+
+.summary-card .text-section h3 {
+    color: #2c3e50; /* Darker number color */
+    font-weight: 700;
+}
+
+/* Icons for summary cards - ensure consistent size and color */
+.summary-card .fa-briefcase, 
+.summary-card .fa-rupee-sign, 
+.summary-card .fa-laptop-house, 
+.summary-card .fa-robot {
+    font-size: 2rem; /* Consistent icon size */
+}
+
+.summary-card .text-primary {
+    color: #3498db !important;
+}
+
+.summary-card .text-success {
+    color: #2ecc71 !important;
+}
+
+.summary-card .text-info {
+    color: #3498db !important; /* Keep info blue */
+}
+
+.summary-card .text-warning {
+    color: #f1c40f !important;
+}
+
+/* Chart Containers */
+[id$="Plot"], [id$="Distribution"], [id$="Analysis"] {
+    background-color: #ffffff; /* White background for charts */
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow for charts */
+}
+
+/* Container adjustments */
+.container-fluid {
+    padding: 1rem 2rem; /* Add vertical padding */
+    margin-top: 60px; /* Added margin-top to create space below fixed navbar */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .summary-card .card-body {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .summary-card .icon-container {
+        margin-bottom: 10px;
+    }
+    .navbar-brand {
+        font-size: 1.4rem;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #bdc3c7;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #95a5a6;
+}
+
+/* Typography refinements */
+h1, h2, h3, h4, h5, h6 {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.text-muted {
+    color: #7f8c8d !important;
+}
+
+/* Icons */
+.fa-2x {
+    font-size: 1.5rem;
+}
+
+
+/* Chart Titles - ensure visibility and consistent styling */
+.js-plotly-plot .plotly .main-svg .infolayer .g-gtitle .gtitle {
+    font-size: 16px !important; /* Adjust font size */
+    font-weight: 600 !important;
+    fill: #333 !important; /* Darker text color */
+}
+
+/* Error page styles */
+.border-danger {
+    border-width: 2px !important;
+}
+
+.text-danger {
+    color: #dc3545 !important;
+}
+
+.fa-exclamation-triangle {
+    margin-right: 0.5rem;
+}
+
+.fa-home {
+    margin-right: 0.5rem;
+}
+
+/* Homepage feature card styles (kept separate or adapted) */
+.feature-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease;
+    animation: fadeInUp 1s ease-out 0.4s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; /* Make card take full height of parent column */
+    color: white; /* Ensure text is readable */
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #2ecc71; /* Green icons */
+}
+
+.feature-card h3 {
+    color: white; /* Ensure heading is readable */
+    font-size: 1.4rem;
+}
+
+.feature-card p {
+     color: rgba(255, 255, 255, 0.8);
+     font-size: 1rem;
+}
+
+/* Ensure consistent summary card appearance by adding a class to dashboard.html */
+
+/* Custom styles for Job Market Analysis */
+
+/* General Styles */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navbar Styles */
+.navbar {
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+/* Card Styles */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    background-color: #fff !important;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding: 1rem;
+}
+
+.card-header h5 {
+    margin: 0;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Summary Cards */
+.card.bg-primary {
+    background: linear-gradient(45deg, #2196F3, #1976D2) !important;
+}
+
+.card.bg-success {
+    background: linear-gradient(45deg, #4CAF50, #388E3C) !important;
+}
+
+.card.bg-info {
+    background: linear-gradient(45deg, #00BCD4, #0097A7) !important;
+}
+
+.card.bg-warning {
+    background: linear-gradient(45deg, #FFC107, #FFA000) !important;
+}
+
+.card-title {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.card-text {
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Chart Containers */
+[id$="Plot"], [id$="Distribution"], [id$="Analysis"] {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .card-text {
+        font-size: 1.5rem;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.display-4 {
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    border-color: #3498db;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+}
+
+.btn-outline-primary {
+    color: #3498db;
+    border-color: #3498db;
+}
+
+.btn-outline-primary:hover {
+    background-color: #3498db;
+    border-color: #3498db;
+}
+
+#trendPlot, #forecastPlot {
+    height: 400px;
+    width: 100%;
+}
+
+.metrics-card {
+    transition: transform 0.2s;
+}
+
+.metrics-card:hover {
+    transform: translateY(-5px);
+}
+
+.display-6 {
+    color: #3498db;
+    font-weight: 600;
+}
+
+/* Error page styles */
+.border-danger {
+    border-width: 2px !important;
+}
+
+.text-danger {
+    color: #dc3545 !important;
+}
+
+.fa-exclamation-triangle {
+    margin-right: 0.5rem;
+}
+
+.fa-home {
+    margin-right: 0.5rem;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease;
+    animation: fadeInUp 1s ease-out 0.4s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; /* Make card take full height of parent column */
+} 

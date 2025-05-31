@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}
+Job Recommender
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <h1 class="text-center">Job Recommender</h1>
+    <p class="text-center">Enter your skills and experience to find matching job postings from the dataset.</p>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('recommend') }}">
+                        <div class="mb-3">
+                            <label for="skills" class="form-label">Your Skills (comma-separated):</label>
+                            <input type="text" class="form-control" id="skills" name="skills" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="experience" class="form-label">Your Experience Level:</label>
+                            <select class="form-select" id="experience" name="experience" required>
+                                <option value="">Select Experience Level</option>
+                                <option value="Intern">Intern</option>
+                                <option value="Junior">Junior</option>
+                                <option value="Mid-level">Mid-level</option>
+                                <option value="Mid-Senior">Mid-Senior</option>
+                                <option value="Senior">Senior</option>
+                                <option value="Director">Director</option>
+                                <option value="Executive">Executive</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Find Jobs</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if recommended_jobs %}
+    <h2 class="mt-4">Recommended Jobs</h2>
+    <div class="row">
+        {% for job in recommended_jobs %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ job['title'] }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ job['company'] }} - {{ job['location'] }}</h6>
+                    <p class="card-text"><strong>Experience:</strong> {{ job['experience_level'] }}</p>
+                    <p class="card-text"><strong>Salary:</strong> ₹{{ "{:,.0f}".format(job['salary']) }}</p>
+                    <p class="card-text"><strong>Skills:</strong> {{ job['skills'] }}</p>
+                    <p class="card-text"><small class="text-muted">Published: {{ job['published_date'] }}</small></p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% elif recommended_jobs is not None and not recommended_jobs %}
+    <div class="alert alert-info mt-4" role="alert">
+        No jobs found matching your criteria.
+    </div>
+    {% endif %}
+</div>
+{% endblock %} 

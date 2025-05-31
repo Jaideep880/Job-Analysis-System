@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Job Market Analytics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-chart-network me-2"></i>Enterprise Job Market Analytics
+            </a>
+            <div class="d-flex">
+                <span class="navbar-text text-light">
+                    <i class="fas fa-calendar-alt me-2"></i>{{ current_date }}
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-4">
+        <!-- Summary Cards Row -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card border-0 shadow-sm summary-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-muted mb-2">Total Job Postings</h6>
+                                <h3 class="mb-0">{{ total_jobs }}</h3>
+                            </div>
+                            <div class="bg-primary bg-opacity-10 p-3 rounded">
+                                <i class="fas fa-briefcase text-primary fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-0 shadow-sm summary-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-muted mb-2">Average CTC</h6>
+                                <h3 class="mb-0">₹{{ avg_salary|round|int }}L</h3>
+                            </div>
+                            <div class="bg-success bg-opacity-10 p-3 rounded">
+                                <i class="fas fa-rupee-sign text-success fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-0 shadow-sm summary-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-muted mb-2">Remote Opportunities</h6>
+                                <h3 class="mb-0">{{ remote_percentage }}%</h3>
+                            </div>
+                            <div class="bg-info bg-opacity-10 p-3 rounded">
+                                <i class="fas fa-laptop-house text-info fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-0 shadow-sm summary-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-muted mb-2">AI/ML Roles</h6>
+                                <h3 class="mb-0">{{ ai_adoption }}%</h3>
+                            </div>
+                            <div class="bg-warning bg-opacity-10 p-3 rounded">
+                                <i class="fas fa-robot text-warning fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Analytics Section -->
+        <div class="row">
+            <!-- Left Column - Time Series Analysis -->
+            <div class="col-md-8">
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="mb-0 text-dark">
+                            <i class="fas fa-chart-line me-2 text-primary"></i>Job Market Trends
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="trendPlot" style="height: 400px;"></div>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="mb-0 text-dark">
+                            <i class="fas fa-chart-area me-2 text-primary"></i>Market Forecast
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="forecastPlot" style="height: 400px;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Distribution Analysis -->
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="mb-0 text-dark">
+                            <i class="fas fa-chart-pie me-2 text-primary"></i>Work Location Distribution
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="remoteVsOnsite" style="height: 300px;"></div>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="mb-0 text-dark">
+                            <i class="fas fa-chart-bar me-2 text-primary"></i>CTC Distribution
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="salaryDistribution" style="height: 300px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills and Location Analysis -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="mb-0 text-dark">
+                            <i class="fas fa-code me-2 text-primary"></i>Top Required Skills
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="skillsAnalysis" style="height: 400px;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="mb-0 text-dark">
+                            <i class="fas fa-map-marker-alt me-2 text-primary"></i>Top Job Locations
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="locationDistribution" style="height: 400px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Industry and Company Analysis -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="mb-0 text-dark">
+                            <i class="fas fa-industry me-2 text-primary"></i>Industry Distribution
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="industryDistribution" style="height: 400px;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="mb-0 text-dark">
+                            <i class="fas fa-building me-2 text-primary"></i>Company Size Distribution
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="companySizeDistribution" style="height: 400px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Parse the JSON data from Flask
+        const trendPlot = JSON.parse('{{ trend_plot|safe }}');
+        const forecastPlot = JSON.parse('{{ forecast_plot|safe }}');
+        const salaryDistribution = JSON.parse('{{ salary_plot|safe }}');
+        const skillsAnalysis = JSON.parse('{{ skills_plot|safe }}');
+        const locationDistribution = JSON.parse('{{ location_plot|safe }}');
+        const remoteVsOnsite = JSON.parse('{{ remote_plot|safe }}');
+        const industryDistribution = JSON.parse('{{ industry_plot|safe }}');
+        const companySizeDistribution = JSON.parse('{{ company_size_plot|safe }}');
+
+        // Create the plots
+        Plotly.newPlot('trendPlot', trendPlot.data, trendPlot.layout);
+        Plotly.newPlot('forecastPlot', forecastPlot.data, forecastPlot.layout);
+        Plotly.newPlot('salaryDistribution', salaryDistribution.data, salaryDistribution.layout);
+        Plotly.newPlot('skillsAnalysis', skillsAnalysis.data, skillsAnalysis.layout);
+        Plotly.newPlot('locationDistribution', locationDistribution.data, locationDistribution.layout);
+        Plotly.newPlot('remoteVsOnsite', remoteVsOnsite.data, remoteVsOnsite.layout);
+        Plotly.newPlot('industryDistribution', industryDistribution.data, industryDistribution.layout);
+        Plotly.newPlot('companySizeDistribution', companySizeDistribution.data, companySizeDistribution.layout);
+    </script>
+</body>
+</html> 
