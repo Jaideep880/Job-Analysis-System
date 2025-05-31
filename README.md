@@ -6,7 +6,10 @@ This project is a web application built with Flask to analyze and visualize job 
 
 Here’s a preview of the **Job Market Analysis** built using Power BI:
 
-![EV Dashboard](https://github.com/Jaideep880/Job-Analysis-System/blob/main/Analytics 1.PNG?raw=true)
+![Analytics 1](https://github.com/Jaideep880/Job-Analysis-System/blob/main/Analytics%201.PNG?raw=true)  
+![Analytics 2](https://github.com/Jaideep880/Job-Analysis-System/blob/main/Analytics%202.PNG?raw=true)  
+![Analytics 3](https://github.com/Jaideep880/Job-Analysis-System/blob/main/Analytics%203.PNG?raw=true)  
+![Analytics 4](https://github.com/Jaideep880/Job-Analysis-System/blob/main/Analytics%204.PNG?raw=true)
 
 ## Features
 
