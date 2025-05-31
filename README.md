@@ -1,6 +1,12 @@
-# Job Market Analysis Dashboard
+# Job Market Analysis 
 
 This project is a web application built with Flask to analyze and visualize job market data.
+
+## 📸 Dashboard Preview
+
+Here’s a preview of the **Job Market Analysis** built using Power BI:
+
+![EV Dashboard](https://github.com/Jaideep880/Job-Analysis-System/blob/main/Analytics 1.PNG?raw=true)
 
 ## Features
 
