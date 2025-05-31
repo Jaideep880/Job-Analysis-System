@@ -2,6 +2,11 @@
 
 This project is a web application built with Flask to analyze and visualize job market data.
 
+## 🚀 Live Demo
+
+[![Live Site](https://img.shields.io/badge/View-Live%20Site-brightgreen)](https://job-analysis-system.onrender.com)
+
+
 ## 📸 Dashboard Preview
 
 Here’s a preview of the **Job Market Analysis** built using Power BI:
